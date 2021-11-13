@@ -6,6 +6,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { HomeComponent } from './home/home.component';
 import { TodoComponent } from './todo/todo.component';
 import { TokenComponent } from './token/token.component';
+import {CollegeRoutingModule} from "./college/college-routing.module";
 
 export const routes: Routes = [
 
@@ -17,7 +18,7 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
+  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }),CollegeRoutingModule],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

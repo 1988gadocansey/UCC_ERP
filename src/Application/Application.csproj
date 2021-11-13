@@ -28,4 +28,15 @@
         <ProjectReference Include="..\Domain\Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Colleges\Commands\DeleteCollege" />
+      <Folder Include="Colleges\Commands\UpdateCollege" />
+      <Folder Include="Colleges\EventHandlers" />
+      <Folder Include="Colleges\Queries" />
+      <Folder Include="Students\Commands\DeleteStudent" />
+      <Folder Include="Students\Commands\UpdateStudent" />
+      <Folder Include="Students\EventHandlers" />
+      <Folder Include="Students\Queries" />
+    </ItemGroup>
+
 </Project>

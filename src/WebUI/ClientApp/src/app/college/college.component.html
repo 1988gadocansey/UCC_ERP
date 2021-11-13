@@ -1,0 +1,28 @@
+<h1>College</h1>
+
+<p>This is the college component.</p>
+
+
+<div class="row">
+  <div class="col-sm-4">
+    <form  [formGroup]="CollegeForm" (ngSubmit)="submit()" method="post" enctype="text/plain" accept-charset="UTF-8">
+      <div class="input-field">
+        <div class="col-md-12">
+
+          <input class="form-control input-lg"     formControlName="Name"  autocomplete="off"    placeholder="Name"    required="" type="text"/>
+        </div>
+        <div *ngIf="CollegeForm.controls['Name'].invalid && (CollegeForm.controls['Name'].dirty || CollegeForm.controls['Name'].touched)" class="alert-danger">
+          <div *ngIf="CollegeForm.controls['Name'].errors.required">
+            Name is required
+          </div>
+        </div>
+      </div>
+      <p></p>
+      <div class="input-field">
+        <div class="col-md-12">
+      <input class="btn  btn-success"  *ngIf="CollegeForm.valid"   value="Save" type="Submit"   />
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

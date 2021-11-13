@@ -16,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { AppRoutingModule } from './app-routing.module';
 import { TokenComponent } from './token/token.component';
+import {CollegeModule} from "./college/college.module";
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { TokenComponent } from './token/token.component';
     FontAwesomeModule,
     HttpClientModule,
     FormsModule,
+    CollegeModule,
     ApiAuthorizationModule,
     AppRoutingModule,
     BrowserAnimationsModule,

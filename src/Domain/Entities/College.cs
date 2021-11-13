@@ -7,7 +7,7 @@ public class College: AuditableEntity, IHasDomainEvent
    
     public int Id { get; set; }
     
-    public Guid Uuid { get; }
+    public Guid Uuid { get; set; }
     [StringLength(50, MinimumLength = 3)]
     public string Name { get; set; }
     public ICollection<Faculty> Faculties { get; set; }
