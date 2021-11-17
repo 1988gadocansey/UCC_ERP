@@ -1,5 +1,6 @@
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using UCC_ERP.Application.Colleges.Commands.CreateCollege;
 using UCC_ERP.Application.Common.Interfaces;
 
 namespace UCC_ERP.Application.Students.Commands.CreateStudent;

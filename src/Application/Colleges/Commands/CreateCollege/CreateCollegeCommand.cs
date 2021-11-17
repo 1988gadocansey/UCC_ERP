@@ -2,7 +2,7 @@ using MediatR;
 using UCC_ERP.Application.Common.Interfaces;
 using UCC_ERP.Domain.Entities;
 
-namespace UCC_ERP.Application.Students.Commands.CreateStudent;
+namespace UCC_ERP.Application.Colleges.Commands.CreateCollege;
 
  
 public class CreateCollegeCommand: IRequest<int>
@@ -24,6 +24,7 @@ public class CreateCollegeCommandHandler : IRequestHandler<CreateCollegeCommand,
 
     public async Task<int> Handle(CreateCollegeCommand request, CancellationToken cancellationToken)
     {
+        Console.WriteLine("request name is" + request.Uuid);
         var entity = new College { Name = request.Name, Uuid = request.Uuid };
 
         _context.Colleges.Add(entity);

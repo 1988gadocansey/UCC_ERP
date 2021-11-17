@@ -33,6 +33,7 @@
       <Folder Include="Colleges\Commands\UpdateCollege" />
       <Folder Include="Colleges\EventHandlers" />
       <Folder Include="Colleges\Queries" />
+      <Folder Include="Students\Commands\CreateStudent" />
       <Folder Include="Students\Commands\DeleteStudent" />
       <Folder Include="Students\Commands\UpdateStudent" />
       <Folder Include="Students\EventHandlers" />

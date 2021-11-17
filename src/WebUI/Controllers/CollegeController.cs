@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using UCC_ERP.Application.Colleges.Commands.CreateCollege;
 using UCC_ERP.Application.Students.Commands.CreateStudent;
 using UCC_ERP.Application.TodoLists.Queries.GetTodos;
 
