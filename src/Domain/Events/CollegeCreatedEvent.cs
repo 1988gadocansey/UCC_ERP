@@ -7,5 +7,5 @@ public class CollegeCreatedEvent: DomainEvent
         College = college;
     }
 
-    private College College { get; }
+    public College College { get; }
 }

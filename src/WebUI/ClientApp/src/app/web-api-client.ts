@@ -718,7 +718,7 @@ export class WeatherForecastClient implements IWeatherForecastClient {
 }
 
 export class CreateCollegeCommand implements ICreateCollegeCommand {
-    name?: string | undefined;
+    name?: string;
     uuid?: string;
 
     constructor(data?: ICreateCollegeCommand) {
@@ -753,7 +753,7 @@ export class CreateCollegeCommand implements ICreateCollegeCommand {
 }
 
 export interface ICreateCollegeCommand {
-    name?: string | undefined;
+    name?: string;
     uuid?: string;
 }
 

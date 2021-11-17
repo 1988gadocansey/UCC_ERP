@@ -13,5 +13,6 @@ public class College: AuditableEntity, IHasDomainEvent
     public string Name { get; set; }
     public ICollection<Faculty> Faculties { get; set; }
 
-    public List<DomainEvent> DomainEvents { get; set; }
+   
+    public List<DomainEvent> DomainEvents { get; set; } = new List<DomainEvent>();
 }

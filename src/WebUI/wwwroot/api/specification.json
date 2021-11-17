@@ -483,8 +483,7 @@
         "additionalProperties": false,
         "properties": {
           "name": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
           },
           "uuid": {
             "type": "string",
