@@ -11,9 +11,7 @@ const routes: Routes = [
   {path:"**", redirectTo:"404"}
 ];
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {relativeLinkResolution: 'legacy'}),
-    RouterModule.forRoot(BackendRoutes, {relativeLinkResolution: 'legacy'})
-  ],
+  imports: [RouterModule.forRoot(routes, {relativeLinkResolution: 'legacy'})],
   exports: [RouterModule],
 })
 export class AppRoutingModule {

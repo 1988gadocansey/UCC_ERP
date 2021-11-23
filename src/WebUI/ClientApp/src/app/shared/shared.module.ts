@@ -4,6 +4,7 @@ import {HeaderComponent} from './header/header.component';
 import {FooterComponent} from './footer/footer.component';
 import {BackendlayoutComponent} from './backendlayout/backendlayout.component';
 import {RouterModule} from "@angular/router";
+import {ApiAuthorizationModule} from "../../api-authorization/api-authorization.module";
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import {RouterModule} from "@angular/router";
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    ApiAuthorizationModule
   ]
 })
 export class SharedModule {

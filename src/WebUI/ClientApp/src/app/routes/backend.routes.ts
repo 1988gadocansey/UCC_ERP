@@ -5,11 +5,11 @@ import {AuthorizeGuard} from "../../api-authorization/authorize.guard";
 
 export const BackendRoutes: Routes = [
   {
-    path: "College",
+    path: "college",
     loadChildren: () => import("../college/college.module").then(c => c.CollegeModule)
   },
   {
-    path: "Dashboard",
+    path: "dashboard",
     loadChildren: () => import("../dashboard/dashboard.module").then(d => d.DashboardModule)
   },
 
