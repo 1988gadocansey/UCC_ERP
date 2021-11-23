@@ -7,13 +7,16 @@
 
 <div class="row">
   <div class="col-sm-4">
-    <form  [formGroup]="CollegeForm" (ngSubmit)="submit()" method="post" enctype="text/plain" accept-charset="UTF-8">
+    <form (ngSubmit)="submit()" [formGroup]="CollegeForm" accept-charset="UTF-8" enctype="text/plain" method="post">
       <div class="input-field">
         <div class="col-md-12">
 
-          <input class="form-control input-lg"     formControlName="Name"  autocomplete="off"    placeholder="Name"    required="" type="text"/>
+          <input autocomplete="off" class="form-control input-lg" formControlName="Name" placeholder="Name" required=""
+                 type="text"/>
         </div>
-        <div *ngIf="CollegeForm.controls['Name'].invalid && (CollegeForm.controls['Name'].dirty || CollegeForm.controls['Name'].touched)" class="alert-danger">
+        <div
+          *ngIf="CollegeForm.controls['Name'].invalid && (CollegeForm.controls['Name'].dirty || CollegeForm.controls['Name'].touched)"
+          class="alert-danger">
           <div *ngIf="CollegeForm.controls['Name'].errors.required">
             Name is required
           </div>
@@ -22,7 +25,7 @@
       <p></p>
       <div class="input-field">
         <div class="col-md-12">
-      <input class="btn  btn-success"  *ngIf="CollegeForm.valid"   value="Save" type="Submit"   />
+          <input *ngIf="CollegeForm.valid" class="btn  btn-success" type="Submit" value="Save"/>
         </div>
       </div>
     </form>

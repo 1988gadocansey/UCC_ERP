@@ -1,7 +1,7 @@
-import { Component, OnInit } from "@angular/core";
-import { AuthorizeService } from "../../api-authorization/authorize.service";
+import {Component, OnInit} from "@angular/core";
+import {AuthorizeService} from "../../api-authorization/authorize.service";
 
-import { faCopy } from "@fortawesome/free-solid-svg-icons";
+import {faCopy} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: "app-token-component",
@@ -14,7 +14,8 @@ export class TokenComponent implements OnInit {
 
   faCopy = faCopy;
 
-  constructor(private authorizeService: AuthorizeService) {}
+  constructor(private authorizeService: AuthorizeService) {
+  }
 
   ngOnInit(): void {
     this.isCopied = false;

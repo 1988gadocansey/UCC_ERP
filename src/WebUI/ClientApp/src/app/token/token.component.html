@@ -11,9 +11,9 @@
       <p id="tokenContent">{{ token }}</p>
     </div>
   </div>
-  <br />
+  <br/>
   <p>
-    <button class="btn btn-primary" (click)="copyToClipboard()">
+    <button (click)="copyToClipboard()" class="btn btn-primary">
       <fa-icon [icon]="faCopy"></fa-icon>&nbsp;Copy
     </button>
   </p>

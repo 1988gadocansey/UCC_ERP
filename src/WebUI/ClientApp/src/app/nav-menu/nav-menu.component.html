@@ -9,56 +9,62 @@
     "
   >
     <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']">UCC_ERP.WebUI</a>
+      <a [routerLink]="['/']" class="navbar-brand">UCC_ERP.WebUI</a>
       <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target=".navbar-collapse"
-        aria-label="Toggle navigation"
-        [attr.aria-expanded]="isExpanded"
         (click)="toggle()"
+        [attr.aria-expanded]="isExpanded"
+        aria-label="Toggle navigation"
+        class="navbar-toggler"
+        data-target=".navbar-collapse"
+        data-toggle="collapse"
+        type="button"
       >
         <span class="navbar-toggler-icon"></span>
       </button>
       <div
-        class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"
         [ngClass]="{ show: isExpanded }"
+        class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse"
       >
         <app-login-menu></app-login-menu>
         <ul class="navbar-nav flex-grow">
           <li
-            class="nav-item"
-            [routerLinkActive]="['link-active']"
             [routerLinkActiveOptions]="{ exact: true }"
+            [routerLinkActive]="['link-active']"
+            class="nav-item"
           >
-            <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
+            <a [routerLink]="['/']" class="nav-link text-dark">Home</a>
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/counter']"
-              >Counter</a
+          <li [routerLinkActive]="['link-active']" class="nav-item">
+            <a [routerLink]="['/counter']" class="nav-link text-dark"
+            >Counter</a
             >
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/fetch-data']"
-              >Fetch data</a
+          <li [routerLinkActive]="['link-active']" class="nav-item">
+            <a [routerLink]="['/fetch-data']" class="nav-link text-dark"
+            >Fetch data</a
             >
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/todo']">Todo</a>
+          <li [routerLinkActive]="['link-active']" class="nav-item">
+            <a [routerLink]="['/app/todo']" class="nav-link text-dark">Todo</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-dark"  [routerLink]="['/college']">College</a>
+            <a [routerLink]="['/app/college']" class="nav-link text-dark">College</a>
           </li>
-          <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/token']">JWT</a>
+          <li class="nav-item">
+            <a [routerLink]="['/app/dashboard']" class="nav-link text-dark">Dashboard</a>
+          </li>
+          <li [routerLinkActive]="['link-active']" class="nav-item">
+            <a [routerLink]="['/app/token']" class="nav-link text-dark">JWT</a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-dark" href="/api" target="_blank">API</a>
           </li>
 
         </ul>
+
+
       </div>
+
     </div>
   </nav>
 </header>

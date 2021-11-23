@@ -4,7 +4,7 @@ namespace UCC_ERP.Domain.Common;
 
 public abstract class AuditableEntity
 {
-  
+   // public int TenantId { get; set; }
     [DataType(DataType.DateTime)]
     public DateTime Created { get; set; }
 

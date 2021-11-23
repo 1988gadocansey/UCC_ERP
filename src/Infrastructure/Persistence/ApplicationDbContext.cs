@@ -16,7 +16,7 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, 
     private readonly ICurrentUserService _currentUserService;
     private readonly IDateTime _dateTime;
     private readonly IDomainEventService _domainEventService;
-
+    private readonly int _tenantId;
     public ApplicationDbContext(
         DbContextOptions<ApplicationDbContext> options,
         IOptions<OperationalStoreOptions> operationalStoreOptions,
@@ -27,6 +27,7 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, 
         _currentUserService = currentUserService;
         _domainEventService = domainEventService;
         _dateTime = dateTime;
+        
     }
 
     public DbSet<TodoList> TodoLists => Set<TodoList>();
@@ -51,6 +52,7 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, 
                 case EntityState.Added:
                     entry.Entity.CreatedBy = _currentUserService.UserId;
                     entry.Entity.Created = _dateTime.Now;
+                   
                     break;
 
                 case EntityState.Modified:

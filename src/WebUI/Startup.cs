@@ -1,3 +1,4 @@
+using EventStore.ClientAPI;
 using UCC_ERP.Application;
 using UCC_ERP.Application.Common.Interfaces;
 using UCC_ERP.Infrastructure;
@@ -25,7 +26,14 @@ public class Startup
     {
         services.AddApplication();
         services.AddInfrastructure(Configuration);
+        var eventStoreConnection = EventStoreConnection.Create(
+            connectionString: Configuration.GetValue<string>("EventStore:ConnectionString"),
+            builder: ConnectionSettings.Create().KeepReconnecting(),
+            connectionName: Configuration.GetValue<string>("EventStore:ConnectionName"));
 
+        eventStoreConnection.ConnectAsync().GetAwaiter().GetResult();
+
+        services.AddSingleton(eventStoreConnection);
         services.AddDatabaseDeveloperPageExceptionFilter();
 
         services.AddSingleton<ICurrentUserService, CurrentUserService>();

@@ -1,24 +1,20 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
-import { HomeComponent } from './home/home.component';
-import { TodoComponent } from './todo/todo.component';
-import { TokenComponent } from './token/token.component';
-import {CollegeRoutingModule} from "./college/college-routing.module";
+import {NgModule} from '@angular/core';
+import {Routes,RouterModule} from '@angular/router';
+import {BackendRoutes} from "./routes/backend.routes";
+import {HomeRoutes} from "./routes/homepage.routes";
+import {PublicComponent} from "./public/public.component";
+import {BackendlayoutComponent} from "./shared/backendlayout/backendlayout.component";
 
-export const routes: Routes = [
-
-  { path: 'counter', component: CounterComponent },
-  { path: 'fetch-data', component: FetchDataComponent },
-  { path: '', component: HomeComponent, pathMatch: 'full' },
-  { path: 'todo', component: TodoComponent, canActivate: [AuthorizeGuard] },
-  { path: 'token', component: TokenComponent, canActivate: [AuthorizeGuard] }
+const routes: Routes = [
+  {path:"",component:PublicComponent,children:HomeRoutes},
+  {path:"app",component:BackendlayoutComponent,children:BackendRoutes},
+  {path:"**", redirectTo:"404"}
 ];
-
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }),CollegeRoutingModule],
+  imports: [RouterModule.forRoot(routes, {relativeLinkResolution: 'legacy'}),
+    RouterModule.forRoot(BackendRoutes, {relativeLinkResolution: 'legacy'})
+  ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}
