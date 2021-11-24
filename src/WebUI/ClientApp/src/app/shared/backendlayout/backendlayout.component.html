@@ -1,6 +1,10 @@
 <app-header></app-header>
-<div class="container">
+
+<div class="container" [ngStyle]="{'padding': '8px'}">
+  <main role="main" >
   <router-outlet></router-outlet>
+  </main>
 </div>
+
 <app-footer></app-footer>
 

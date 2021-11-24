@@ -6,10 +6,11 @@
       border-bottom
       box-shadow
       mb-3
+
     "
   >
     <div class="container">
-      <a [routerLink]="['/']" class="navbar-brand">UCC_ERP.WebUI</a>
+      <a [routerLink]="['/']" class="navbar-brand">University of Cape Coast</a>
       <button
         (click)="toggle()"
         [attr.aria-expanded]="isExpanded"
@@ -44,18 +45,18 @@
             >Fetch data</a
             >
           </li>
-          <li [routerLinkActive]="['link-active']" class="nav-item" *ngIf="isAuthenticated | async">
-            <a [routerLink]="['/app/todo']" class="nav-link text-dark">Todo</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Dropdown
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
           </li>
-          <li class="nav-item" *ngIf="isAuthenticated | async">
-            <a [routerLink]="['/app/college']" class="nav-link text-dark">College</a>
-          </li>
-          <li class="nav-item" *ngIf="isAuthenticated | async">
-            <a [routerLink]="['/app/dashboard']" class="nav-link text-dark">Dashboard</a>
-          </li>
-          <li [routerLinkActive]="['link-active']" class="nav-item" *ngIf="isAuthenticated | async">
-            <a [routerLink]="['/app/token']" class="nav-link text-dark">JWT</a>
-          </li>
+
           <li class="nav-item">
             <a class="nav-link text-dark" href="/api" target="_blank">API</a>
           </li>

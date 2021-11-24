@@ -15,9 +15,6 @@ public class CollegeController: ApiControllerBase
     {
         return await Mediator.Send(query);
     }
-     
-
-
     [HttpPost]
     public async Task<ActionResult<int>> Create(CreateCollegeCommand command)
     {

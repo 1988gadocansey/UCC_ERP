@@ -16,13 +16,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ModalModule} from 'ngx-bootstrap/modal';
 import {AppRoutingModule} from './app-routing.module';
 import {TokenComponent} from './token/token.component';
-import {CollegeModule} from "./college/college.module";
-
 import {StudentComponent} from './student/student.component';
-import {DashboardModule} from "./dashboard/dashboard.module";
-import { PublicComponent } from './public/public.component';
-
-import { MaintenaceComponent } from './maintenace/maintenace.component';
+import {PublicComponent} from './public/public.component';
 import {SharedModule} from "./shared/shared.module";
 
 
@@ -47,11 +42,10 @@ import {SharedModule} from "./shared/shared.module";
     HttpClientModule,
     FormsModule,
     SharedModule,
-
+    FontAwesomeModule,
     ApiAuthorizationModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-
     ModalModule.forRoot()
   ],
   providers: [
