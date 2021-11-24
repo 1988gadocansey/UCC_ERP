@@ -39,21 +39,21 @@
             >Counter</a
             >
           </li>
-          <li [routerLinkActive]="['link-active']" class="nav-item">
+          <li [routerLinkActive]="['link-active']" class="nav-item" *ngIf="isAuthenticated | async">
             <a [routerLink]="['/fetch-data']" class="nav-link text-dark"
             >Fetch data</a
             >
           </li>
-          <li [routerLinkActive]="['link-active']" class="nav-item">
+          <li [routerLinkActive]="['link-active']" class="nav-item" *ngIf="isAuthenticated | async">
             <a [routerLink]="['/app/todo']" class="nav-link text-dark">Todo</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="isAuthenticated | async">
             <a [routerLink]="['/app/college']" class="nav-link text-dark">College</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" *ngIf="isAuthenticated | async">
             <a [routerLink]="['/app/dashboard']" class="nav-link text-dark">Dashboard</a>
           </li>
-          <li [routerLinkActive]="['link-active']" class="nav-item">
+          <li [routerLinkActive]="['link-active']" class="nav-item" *ngIf="isAuthenticated | async">
             <a [routerLink]="['/app/token']" class="nav-link text-dark">JWT</a>
           </li>
           <li class="nav-item">

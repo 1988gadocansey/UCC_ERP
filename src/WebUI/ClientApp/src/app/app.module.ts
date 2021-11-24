@@ -21,8 +21,7 @@ import {CollegeModule} from "./college/college.module";
 import {StudentComponent} from './student/student.component';
 import {DashboardModule} from "./dashboard/dashboard.module";
 import { PublicComponent } from './public/public.component';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { ServeErrorComponent } from './serve-error/serve-error.component';
+
 import { MaintenaceComponent } from './maintenace/maintenace.component';
 import {SharedModule} from "./shared/shared.module";
 
