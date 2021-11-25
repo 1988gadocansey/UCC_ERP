@@ -11,7 +11,7 @@
         "tags": [
           "College"
         ],
-        "operationId": "College_GetTodoItemsWithPagination",
+        "operationId": "College_GetCollegeWithPagination",
         "parameters": [
           {
             "name": "Id",
@@ -570,6 +570,14 @@
           },
           "name": {
             "type": "string"
+          },
+          "created": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "createdBy": {
+            "type": "string",
+            "nullable": true
           },
           "uuid": {
             "type": "string",

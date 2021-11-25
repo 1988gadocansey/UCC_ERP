@@ -36,12 +36,7 @@
             <a [routerLink]="['/']" class="nav-link text-dark">Home</a>
           </li>
 
-          <li [routerLinkActive]="['link-active']" class="nav-item">
-            <a [routerLink]="['/app/todo']" class="nav-link text-dark">Todo</a>
-          </li>
-          <li class="nav-item">
-            <a [routerLink]="['/app/college']" class="nav-link text-dark">College</a>
-          </li>
+
 
           <li class="nav-item">
             <a [routerLink]="['/app/dashboard']" class="nav-link text-dark">Dashboard</a>
@@ -79,10 +74,8 @@
             Administration
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><a class="dropdown-item"  [routerLink]="['/app/todo']">Todo</a></li>
+            <li><a class="dropdown-item"  [routerLink]="['/app/college']">Colleges</a></li>
           </ul>
         </li>
         <li class="nav-item dropdown">

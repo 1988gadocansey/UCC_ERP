@@ -19,6 +19,7 @@ import {TokenComponent} from './token/token.component';
 import {StudentComponent} from './student/student.component';
 import {PublicComponent} from './public/public.component';
 import {SharedModule} from "./shared/shared.module";
+import {ViewComponent} from './college/view/view.component';
 
 
 @NgModule({
@@ -32,7 +33,7 @@ import {SharedModule} from "./shared/shared.module";
     TokenComponent,
 
     StudentComponent,
-      PublicComponent,
+    PublicComponent,
 
 
   ],

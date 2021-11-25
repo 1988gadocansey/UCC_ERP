@@ -11,7 +11,7 @@ namespace UCC_ERP.WebUI.Controllers;
 public class CollegeController: ApiControllerBase
 {
     [HttpGet]
-    public async Task<ActionResult<PaginatedList<CollegeDto>>> GetTodoItemsWithPagination([FromQuery] GetCollegeQueryWithPagination query)
+    public async Task<ActionResult<PaginatedList<CollegeDto>>> GetCollegeWithPagination([FromQuery] GetCollegeQueryWithPagination query)
     {
         return await Mediator.Send(query);
     }

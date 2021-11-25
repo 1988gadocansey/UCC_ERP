@@ -15,7 +15,7 @@ import { HttpClient, HttpHeaders, HttpResponse, HttpResponseBase } from '@angula
 export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL');
 
 export interface ICollegeClient {
-    getTodoItemsWithPagination(id: number | undefined, pageNumber: number | undefined, pageSize: number | undefined): Observable<PaginatedListOfCollegeDto>;
+    getCollegeWithPagination(id: number | undefined, pageNumber: number | undefined, pageSize: number | undefined): Observable<PaginatedListOfCollegeDto>;
     create(command: CreateCollegeCommand): Observable<number>;
 }
 
@@ -32,7 +32,7 @@ export class CollegeClient implements ICollegeClient {
         this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
     }
 
-    getTodoItemsWithPagination(id: number | undefined, pageNumber: number | undefined, pageSize: number | undefined): Observable<PaginatedListOfCollegeDto> {
+    getCollegeWithPagination(id: number | undefined, pageNumber: number | undefined, pageSize: number | undefined): Observable<PaginatedListOfCollegeDto> {
         let url_ = this.baseUrl + "/api/College?";
         if (id === null)
             throw new Error("The parameter 'id' cannot be null.");
@@ -57,11 +57,11 @@ export class CollegeClient implements ICollegeClient {
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetTodoItemsWithPagination(response_);
+            return this.processGetCollegeWithPagination(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetTodoItemsWithPagination(<any>response_);
+                    return this.processGetCollegeWithPagination(<any>response_);
                 } catch (e) {
                     return <Observable<PaginatedListOfCollegeDto>><any>_observableThrow(e);
                 }
@@ -70,7 +70,7 @@ export class CollegeClient implements ICollegeClient {
         }));
     }
 
-    protected processGetTodoItemsWithPagination(response: HttpResponseBase): Observable<PaginatedListOfCollegeDto> {
+    protected processGetCollegeWithPagination(response: HttpResponseBase): Observable<PaginatedListOfCollegeDto> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -845,6 +845,8 @@ export interface IPaginatedListOfCollegeDto {
 export class CollegeDto implements ICollegeDto {
     id?: number;
     name?: string;
+    created?: Date;
+    createdBy?: string | undefined;
     uuid?: string;
 
     constructor(data?: ICollegeDto) {
@@ -860,6 +862,8 @@ export class CollegeDto implements ICollegeDto {
         if (_data) {
             this.id = _data["id"];
             this.name = _data["name"];
+            this.created = _data["created"] ? new Date(_data["created"].toString()) : <any>undefined;
+            this.createdBy = _data["createdBy"];
             this.uuid = _data["uuid"];
         }
     }
@@ -875,6 +879,8 @@ export class CollegeDto implements ICollegeDto {
         data = typeof data === 'object' ? data : {};
         data["id"] = this.id;
         data["name"] = this.name;
+        data["created"] = this.created ? this.created.toISOString() : <any>undefined;
+        data["createdBy"] = this.createdBy;
         data["uuid"] = this.uuid;
         return data; 
     }
@@ -883,6 +889,8 @@ export class CollegeDto implements ICollegeDto {
 export interface ICollegeDto {
     id?: number;
     name?: string;
+    created?: Date;
+    createdBy?: string | undefined;
     uuid?: string;
 }
 

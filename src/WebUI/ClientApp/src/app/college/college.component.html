@@ -1,32 +1,30 @@
-<h1>College</h1>
+<h2>Colleges</h2>
+<div *ngIf="Colleges.length > 0 else elseBlock">
 
-<div *ngIf="Status" class="alert alert-success text-center" role="alert">
-  {{Status}}
+  <table id="dtBasicExample" class="table table-striped table-bordered table-sm table-responsive" >
+    <thead>
+    <tr>
+      <th class="th-sm">No
+      <th class="th-sm">Name
+      </th>
+      <th class="th-sm">Created
+      </th>
+
+
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let college of Colleges; let i = index">
+      <td>{{i+1}}</td>
+      <td>{{college.name|titlecase}}</td>
+
+      <td>{{college.created|date:'medium'}}</td>
+
+
+    </tr>
+    </tbody>
+  </table>
 </div>
+<ng-template #elseBlock>No Colege(s)..</ng-template>
 
-<div class="row">
-  <div class="col-sm-4">
-    <form (ngSubmit)="submit()" [formGroup]="CollegeForm" accept-charset="UTF-8" enctype="text/plain" method="post">
-      <div class="input-field">
-        <div class="col-md-12">
-
-          <input autocomplete="off" class="form-control input-lg" formControlName="Name" placeholder="Name" required=""
-                 type="text"/>
-        </div>
-        <div
-          *ngIf="CollegeForm.controls['Name'].invalid && (CollegeForm.controls['Name'].dirty || CollegeForm.controls['Name'].touched)"
-          class="alert-danger">
-          <div *ngIf="CollegeForm.controls['Name'].errors.required">
-            Name is required
-          </div>
-        </div>
-      </div>
-      <p></p>
-      <div class="input-field">
-        <div class="col-md-12">
-          <input *ngIf="CollegeForm.valid" class="btn  btn-success" type="Submit" value="Save"/>
-        </div>
-      </div>
-    </form>
-  </div>
-</div>
