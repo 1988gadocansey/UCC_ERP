@@ -19,7 +19,8 @@ import {TokenComponent} from './token/token.component';
 import {StudentComponent} from './student/student.component';
 import {PublicComponent} from './public/public.component';
 import {SharedModule} from "./shared/shared.module";
-import {ViewComponent} from './college/view/view.component';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 
 @NgModule({
@@ -47,7 +48,9 @@ import {ViewComponent} from './college/view/view.component';
     ApiAuthorizationModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    PaginationModule.forRoot(),
+     SweetAlert2Module.forRoot(),
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true},

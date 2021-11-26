@@ -1,0 +1,19 @@
+
+.row {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.search_btn {
+  background: white;
+  border: solid 1px #51b072;
+  height: 2.3em;
+}
+.backbtn {
+  color: #010e1a !important;
+  margin-right: 20px;
+}

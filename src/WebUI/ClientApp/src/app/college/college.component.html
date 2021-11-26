@@ -1,7 +1,34 @@
-<h2>Colleges</h2>
-<div *ngIf="Colleges.length > 0 else elseBlock">
+<div class="row notifications">
+  <div *ngIf="Status" class="alert alert-success text-center" role="alert">{{Status}}</div>
+</div>
+<div class="row">
+  <div class="col-sm-3">
+    <div class="page-title"><a href="#" class="backbtn">
+      <i class="fa fa-arrow-circle-left"></i></a> Colleges</div>
+  </div>
+</div>
+<hr class="mt-2 mb-3"/>
+<div class="row header pull-right">
 
-  <table id="dtBasicExample" class="table table-striped table-bordered table-sm table-responsive" >
+
+  <div class="input-group col-sm">
+    <form class="d-flex">
+      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+      <button type="button"   class="btn search_btn"><span class="fa fa-search search_icon"></span></button>
+    </form>
+  </div>
+
+  <div class="col-sm">
+
+    <button type="button" class="btn btn-outline-success" title="Add College..." (click)="addNewCollegeModal(newCollegeModalTemplate)">Add College</button>
+
+  </div>
+
+</div>
+<div><p>&nbsp;</p></div>
+
+<div *ngIf="Colleges.length > 0 else elseBlock">
+  <table id="dtBasicExample" class="table table-striped table-bordered table-sm table-responsive">
     <thead>
     <tr>
       <th class="th-sm">No
@@ -9,22 +36,49 @@
       </th>
       <th class="th-sm">Created
       </th>
-
-
-
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let college of Colleges; let i = index">
-      <td>{{i+1}}</td>
+      <td>{{i + 1}}</td>
       <td>{{college.name|titlecase}}</td>
 
       <td>{{college.created|date:'medium'}}</td>
-
+      <td>
+        <fa-icon [icon]="faEllipsisH"></fa-icon>
+      </td>
 
     </tr>
     </tbody>
   </table>
+  <pagination [totalItems]="totalItems"></pagination>
 </div>
 <ng-template #elseBlock>No Colege(s)..</ng-template>
+<button [swal]="['Oops!', 'This is not implemented yet :/', 'warning']">
+  Do it!
+</button>
+<ng-template #newCollegeModalTemplate>
+  <form [formGroup]="CollegeForm" accept-charset="UTF-8" enctype="text/plain" method="post">
 
+    <div class="modal-header clearfix">
+      <h4 class="modal-title float-left">New College</h4>
+      <button type="button" class="btn-close" (click)="newCollegeCancelled()" data-dismiss="modal"
+              aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <input autocomplete="off" class="form-control input-lg" formControlName="Name" placeholder="Name" required=""
+               type="text"/>
+        <div *ngIf="newListEditor.error" class="invalid-feedback">
+          {{ newListEditor.error }}
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="text-right">
+        <button (click)="newCollegeCancelled()" class="btn btn-default">Cancel</button>
+        <button *ngIf="CollegeForm.valid" (click)="addCollege()" class="btn btn-primary">Create</button>
+      </div>
+    </div>
+  </form>
+</ng-template>

@@ -88,7 +88,6 @@ export class TodoComponent {
         if (errors && errors.Title) {
           this.newListEditor.error = errors.Title[0];
         }
-
         setTimeout(() => document.getElementById("title").focus(), 250);
       }
     );
