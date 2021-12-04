@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 
 
 import {CollegeComponent} from "./college.component";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import {CollegeRouteModule} from "./college.route.module";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
@@ -19,7 +19,8 @@ import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
         CollegeRouteModule,
         FontAwesomeModule,
         PaginationModule,
-        SweetAlert2Module
+        SweetAlert2Module,
+        FormsModule
     ]
 })
 export class CollegeModule {

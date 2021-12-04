@@ -9,33 +9,32 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1"/>
-        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="10.3.4"/>
-        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0"/>
-        <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.0"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0"/>
+        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+        <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="10.3.4" />
+        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.0">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational.Design" Version="2.0.0-preview1-final"/>
-        <PackageReference Include="Npgsql" Version="6.0.0"/>
-        <PackageReference Include="Npgsql.EntityFramework" Version="2.2.7"/>
-        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.0"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Relational.Design" Version="2.0.0-preview1-final" />
+        <PackageReference Include="Npgsql" Version="6.0.0" />
+        <PackageReference Include="Npgsql.EntityFramework" Version="2.2.7" />
+        <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.0" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Domain\Domain.csproj"/>
+        <ProjectReference Include="..\Domain\Domain.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Colleges\Commands\DeleteCollege"/>
-        <Folder Include="Colleges\Commands\UpdateCollege"/>
-        <Folder Include="Students\Commands\CreateStudent"/>
-        <Folder Include="Students\Commands\DeleteStudent"/>
-        <Folder Include="Students\Commands\UpdateStudent"/>
-        <Folder Include="Students\EventHandlers"/>
-        <Folder Include="Students\Queries"/>
+        <Folder Include="Colleges\Commands\DeleteCollege" />
+        <Folder Include="Students\Commands\CreateStudent" />
+        <Folder Include="Students\Commands\DeleteStudent" />
+        <Folder Include="Students\Commands\UpdateStudent" />
+        <Folder Include="Students\EventHandlers" />
+        <Folder Include="Students\Queries" />
     </ItemGroup>
 
 </Project>

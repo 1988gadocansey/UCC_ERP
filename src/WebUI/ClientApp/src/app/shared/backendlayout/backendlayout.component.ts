@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-backendlayout',
   templateUrl: './backendlayout.component.html',
-  styleUrls: ['./backendlayout.component.css']
+  styleUrls: ['./backendlayout.component.scss']
 })
 export class BackendlayoutComponent implements OnInit {
 

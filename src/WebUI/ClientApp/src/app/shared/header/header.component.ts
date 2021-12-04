@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {Observable} from "rxjs";
+import {AuthorizeService} from "../../../api-authorization/authorize.service";
 
 @Component({
   selector: 'app-header',
@@ -8,13 +10,19 @@ import {Component, OnInit} from '@angular/core';
 export class HeaderComponent   {
 
   isExpanded = false;
-
+  public isAuthenticated: Observable<boolean>;
   collapse() {
     this.isExpanded = false;
+  }
+  constructor(private authorizeService: AuthorizeService) {
+  }
+
+  ngOnInit() {
+    this.isAuthenticated = this.authorizeService.isAuthenticated();
+
   }
 
   toggle() {
     this.isExpanded = !this.isExpanded;
   }
-
 }

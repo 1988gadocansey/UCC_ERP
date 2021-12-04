@@ -28,7 +28,7 @@ public class Student : AuditableEntity, IHasDomainEvent
     [DataType(DataType.Date)]
     [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
     public DateTime DateOfBirth { get; set; }
-
+    
     [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
     public string FullName => LastName + ", " + FirstName + ", " + MiddleName;
     [Required] public string Phone { get; set; }
@@ -42,7 +42,8 @@ public class Student : AuditableEntity, IHasDomainEvent
     private bool Alumni;
     public string? NationalIDType { get; set; }
     public string? NationalIDNo { get; set; }
-    
+    public ICollection<Enrollment>? Enrollments { get; set; } = new List<Enrollment>();
+    public Programme Programme;
     public bool OnCompleted
     {
         get => Alumni;

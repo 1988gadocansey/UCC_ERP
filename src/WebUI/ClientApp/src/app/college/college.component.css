@@ -1,4 +1,3 @@
-
 .row {
   display: -ms-flexbox;
   display: flex;
@@ -16,4 +15,9 @@
 .backbtn {
   color: #010e1a !important;
   margin-right: 20px;
+}
+
+.page-title {
+  font-size: 1.8em;
+  font-weight: 100;
 }

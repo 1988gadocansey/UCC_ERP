@@ -15,8 +15,9 @@ import { HttpClient, HttpHeaders, HttpResponse, HttpResponseBase } from '@angula
 export const API_BASE_URL = new InjectionToken<string>('API_BASE_URL');
 
 export interface ICollegeClient {
-    getCollegeWithPagination(id: number | undefined, pageNumber: number | undefined, pageSize: number | undefined): Observable<PaginatedListOfCollegeDto>;
+    get(): Observable<CollegeVm>;
     create(command: CreateCollegeCommand): Observable<number>;
+    update(id: number, command: UpdateCollegeCommand): Observable<FileResponse>;
 }
 
 @Injectable({
@@ -32,20 +33,8 @@ export class CollegeClient implements ICollegeClient {
         this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
     }
 
-    getCollegeWithPagination(id: number | undefined, pageNumber: number | undefined, pageSize: number | undefined): Observable<PaginatedListOfCollegeDto> {
-        let url_ = this.baseUrl + "/api/College?";
-        if (id === null)
-            throw new Error("The parameter 'id' cannot be null.");
-        else if (id !== undefined)
-            url_ += "Id=" + encodeURIComponent("" + id) + "&";
-        if (pageNumber === null)
-            throw new Error("The parameter 'pageNumber' cannot be null.");
-        else if (pageNumber !== undefined)
-            url_ += "PageNumber=" + encodeURIComponent("" + pageNumber) + "&";
-        if (pageSize === null)
-            throw new Error("The parameter 'pageSize' cannot be null.");
-        else if (pageSize !== undefined)
-            url_ += "PageSize=" + encodeURIComponent("" + pageSize) + "&";
+    get(): Observable<CollegeVm> {
+        let url_ = this.baseUrl + "/api/College";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_ : any = {
@@ -57,20 +46,20 @@ export class CollegeClient implements ICollegeClient {
         };
 
         return this.http.request("get", url_, options_).pipe(_observableMergeMap((response_ : any) => {
-            return this.processGetCollegeWithPagination(response_);
+            return this.processGet(response_);
         })).pipe(_observableCatch((response_: any) => {
             if (response_ instanceof HttpResponseBase) {
                 try {
-                    return this.processGetCollegeWithPagination(<any>response_);
+                    return this.processGet(<any>response_);
                 } catch (e) {
-                    return <Observable<PaginatedListOfCollegeDto>><any>_observableThrow(e);
+                    return <Observable<CollegeVm>><any>_observableThrow(e);
                 }
             } else
-                return <Observable<PaginatedListOfCollegeDto>><any>_observableThrow(response_);
+                return <Observable<CollegeVm>><any>_observableThrow(response_);
         }));
     }
 
-    protected processGetCollegeWithPagination(response: HttpResponseBase): Observable<PaginatedListOfCollegeDto> {
+    protected processGet(response: HttpResponseBase): Observable<CollegeVm> {
         const status = response.status;
         const responseBlob =
             response instanceof HttpResponse ? response.body :
@@ -81,7 +70,7 @@ export class CollegeClient implements ICollegeClient {
             return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
             let result200: any = null;
             let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = PaginatedListOfCollegeDto.fromJS(resultData200);
+            result200 = CollegeVm.fromJS(resultData200);
             return _observableOf(result200);
             }));
         } else if (status !== 200 && status !== 204) {
@@ -89,7 +78,7 @@ export class CollegeClient implements ICollegeClient {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             }));
         }
-        return _observableOf<PaginatedListOfCollegeDto>(<any>null);
+        return _observableOf<CollegeVm>(<any>null);
     }
 
     create(command: CreateCollegeCommand): Observable<number> {
@@ -142,6 +131,59 @@ export class CollegeClient implements ICollegeClient {
             }));
         }
         return _observableOf<number>(<any>null);
+    }
+
+    update(id: number, command: UpdateCollegeCommand): Observable<FileResponse> {
+        let url_ = this.baseUrl + "/api/College/{id}";
+        if (id === undefined || id === null)
+            throw new Error("The parameter 'id' must be defined.");
+        url_ = url_.replace("{id}", encodeURIComponent("" + id));
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(command);
+
+        let options_ : any = {
+            body: content_,
+            observe: "response",
+            responseType: "blob",
+            headers: new HttpHeaders({
+                "Content-Type": "application/json",
+                "Accept": "application/octet-stream"
+            })
+        };
+
+        return this.http.request("put", url_, options_).pipe(_observableMergeMap((response_ : any) => {
+            return this.processUpdate(response_);
+        })).pipe(_observableCatch((response_: any) => {
+            if (response_ instanceof HttpResponseBase) {
+                try {
+                    return this.processUpdate(<any>response_);
+                } catch (e) {
+                    return <Observable<FileResponse>><any>_observableThrow(e);
+                }
+            } else
+                return <Observable<FileResponse>><any>_observableThrow(response_);
+        }));
+    }
+
+    protected processUpdate(response: HttpResponseBase): Observable<FileResponse> {
+        const status = response.status;
+        const responseBlob =
+            response instanceof HttpResponse ? response.body :
+            (<any>response).error instanceof Blob ? (<any>response).error : undefined;
+
+        let _headers: any = {}; if (response.headers) { for (let key of response.headers.keys()) { _headers[key] = response.headers.get(key); }}
+        if (status === 200 || status === 206) {
+            const contentDisposition = response.headers ? response.headers.get("content-disposition") : undefined;
+            const fileNameMatch = contentDisposition ? /filename="?([^"]*?)"?(;|$)/g.exec(contentDisposition) : undefined;
+            const fileName = fileNameMatch && fileNameMatch.length > 1 ? fileNameMatch[1] : undefined;
+            return _observableOf({ fileName: fileName, data: <any>responseBlob, status: status, headers: _headers });
+        } else if (status !== 200 && status !== 204) {
+            return blobToText(responseBlob).pipe(_observableMergeMap(_responseText => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            }));
+        }
+        return _observableOf<FileResponse>(<any>null);
     }
 }
 
@@ -778,15 +820,10 @@ export class WeatherForecastClient implements IWeatherForecastClient {
     }
 }
 
-export class PaginatedListOfCollegeDto implements IPaginatedListOfCollegeDto {
-    items?: CollegeDto[];
-    pageNumber?: number;
-    totalPages?: number;
-    totalCount?: number;
-    hasPreviousPage?: boolean;
-    hasNextPage?: boolean;
+export class CollegeVm implements ICollegeVm {
+    lists?: CollegeDto[];
 
-    constructor(data?: IPaginatedListOfCollegeDto) {
+    constructor(data?: ICollegeVm) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
@@ -797,49 +834,34 @@ export class PaginatedListOfCollegeDto implements IPaginatedListOfCollegeDto {
 
     init(_data?: any) {
         if (_data) {
-            if (Array.isArray(_data["items"])) {
-                this.items = [] as any;
-                for (let item of _data["items"])
-                    this.items!.push(CollegeDto.fromJS(item));
+            if (Array.isArray(_data["lists"])) {
+                this.lists = [] as any;
+                for (let item of _data["lists"])
+                    this.lists!.push(CollegeDto.fromJS(item));
             }
-            this.pageNumber = _data["pageNumber"];
-            this.totalPages = _data["totalPages"];
-            this.totalCount = _data["totalCount"];
-            this.hasPreviousPage = _data["hasPreviousPage"];
-            this.hasNextPage = _data["hasNextPage"];
         }
     }
 
-    static fromJS(data: any): PaginatedListOfCollegeDto {
+    static fromJS(data: any): CollegeVm {
         data = typeof data === 'object' ? data : {};
-        let result = new PaginatedListOfCollegeDto();
+        let result = new CollegeVm();
         result.init(data);
         return result;
     }
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        if (Array.isArray(this.items)) {
-            data["items"] = [];
-            for (let item of this.items)
-                data["items"].push(item.toJSON());
+        if (Array.isArray(this.lists)) {
+            data["lists"] = [];
+            for (let item of this.lists)
+                data["lists"].push(item.toJSON());
         }
-        data["pageNumber"] = this.pageNumber;
-        data["totalPages"] = this.totalPages;
-        data["totalCount"] = this.totalCount;
-        data["hasPreviousPage"] = this.hasPreviousPage;
-        data["hasNextPage"] = this.hasNextPage;
         return data; 
     }
 }
 
-export interface IPaginatedListOfCollegeDto {
-    items?: CollegeDto[];
-    pageNumber?: number;
-    totalPages?: number;
-    totalCount?: number;
-    hasPreviousPage?: boolean;
-    hasNextPage?: boolean;
+export interface ICollegeVm {
+    lists?: CollegeDto[];
 }
 
 export class CollegeDto implements ICollegeDto {
@@ -932,6 +954,46 @@ export class CreateCollegeCommand implements ICreateCollegeCommand {
 export interface ICreateCollegeCommand {
     name?: string;
     uuid?: string;
+}
+
+export class UpdateCollegeCommand implements IUpdateCollegeCommand {
+    id?: number;
+    name?: string | undefined;
+
+    constructor(data?: IUpdateCollegeCommand) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.id = _data["id"];
+            this.name = _data["name"];
+        }
+    }
+
+    static fromJS(data: any): UpdateCollegeCommand {
+        data = typeof data === 'object' ? data : {};
+        let result = new UpdateCollegeCommand();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["id"] = this.id;
+        data["name"] = this.name;
+        return data; 
+    }
+}
+
+export interface IUpdateCollegeCommand {
+    id?: number;
+    name?: string | undefined;
 }
 
 export class PaginatedListOfTodoItemBriefDto implements IPaginatedListOfTodoItemBriefDto {
